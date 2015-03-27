@@ -8,8 +8,8 @@
     private $time_since_last_visit;
     private $posts_on_frontpage = 100; // Number of posts shown on frontpage
     private $replies_on_frontpage = 5; // Number of replies shon in preview on frontpage
-    private $purge_interval = 2880; // in minutes
-    private $index_topics_interval = 60; // in minutes
+    private $purge_interval = 4320; // in minutes
+    private $index_topics_interval = 120; // in minutes
     private $index_topics_number = 50; // Number of Topics shown on frontpage
     private $path = '';
     private $single_path = 'single.php?id=';
@@ -312,7 +312,7 @@
             SELECT id
             FROM posts
             WHERE '.$this -> scoring_algorithm.' <= 0.0002
-            OR LENGTH(content) <= 100
+            OR LENGTH(content) <= 140
             ORDER BY id ASC;');
         $data = $this -> database -> cleanData ($data);
         foreach ($data as $post) {
