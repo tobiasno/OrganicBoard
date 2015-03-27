@@ -132,9 +132,9 @@
           <div id="open_topic_form">
             <div id="open_topic_form_headline">Neuen Beitrag verfassen</div>
             <form action="'.$this -> path.'" method="post" accept-charset="UTF-8">
-              <input type="text" maxlength="16" id="name" name="name" placeholder="Name"><br>
+              <input type="text" maxlength="16" id="name" name="name" placeholder="Name (optional)"><br>
               <input type="text" maxlength="64" id="headline" name="headline" placeholder="Überschrift"><br>
-              <input type="text" maxlength="20" id="topic" name="topic" placeholder="Thema" value="'.$topic.'"><br>
+              <input type="text" maxlength="20" id="topic" name="topic" placeholder="Thema (optional)" value="'.$topic.'"><br>
               <textarea type="text" id="content" name="content" placeholder="Text"></textarea><br>
               <button type="submit">Los!</button>
             </form>
@@ -227,7 +227,7 @@
       $output = '
           <div id="answer_form_headline">Antworten</div>
           <form action="'.$this -> single_path . $id.'#answer_form" method="post" accept-charset="UTF-8">
-            <input type="text" maxlength="16" id="name" name="name" placeholder="Name"><br>
+            <input type="text" maxlength="16" id="name" name="name" placeholder="Name (optional)"><br>
             <textarea type="text" id="content" name="content" placeholder="Text"></textarea><br>
             <button type="submit">Los!</button>
           </form>';
