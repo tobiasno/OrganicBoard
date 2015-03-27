@@ -28,7 +28,11 @@
      * @return Int, in seconds
      */
     public function getTimeSinceLastVisit ($cookie) {
-      return $this -> clock -> getDifference ($cookie[$this -> cookie_name], $this -> clock -> getTimestamp ());
+      if (empty ($cookie)) {
+        return 2592000;
+      } else {
+        return $this -> clock -> getDifference ($cookie[$this -> cookie_name], $this -> clock -> getTimestamp ());
+      }
     }
   }
 ?>
