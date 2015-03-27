@@ -1,3 +1,9 @@
+<?php
+  /**
+   * @author Tobias Nolte <tobias@abygr.com>
+   * @link http://www.mndcntrl.com/ Developer Blog
+   */  
+?>
 <!DOCTYPE html>
 <html lang="de">
   <head>

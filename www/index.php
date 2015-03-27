@@ -1,4 +1,9 @@
 <?php
+  /**
+   * @author Tobias Nolte <tobias@abygr.com>
+   * @link http://www.mndcntrl.com/ Developer Blog
+   */  
+
   require_once ("class.cookiemonster.php");
   $cookiemonster = new CookieMonster ();
   $cookiemonster -> setMyCookie ();

@@ -1,4 +1,9 @@
 <?php
+  /**
+   * @author Tobias Nolte <tobias@abygr.com>
+   * @link http://www.mndcntrl.com/ Developer Blog
+   */  
+
   require_once ("class.clock.php");
 
   class CookieMonster {
@@ -11,21 +16,18 @@
       $this -> clock = new Clock ();
     }
 
-    /*
-     * setMyCookie
-     *
-     * @param none
-     * @return null
+    /**
+     * Sets cookie.
      */
     public function setMyCookie () {
       setcookie ($this -> cookie_name, $this -> clock -> getTimestamp (), strtotime ('+'.$this -> cookie_life.' days'), "/", $this -> domain, false, true);
     }
 
-    /*
-     * getTimeSinceLastVisit
+    /**
+     * Returns time since last visit
      *
-     * @param $cookie : Array
-     * @return Int, in seconds
+     * @param mixed[] $cookie Array
+     * @return integer in seconds
      */
     public function getTimeSinceLastVisit ($cookie) {
       if (empty ($cookie)) {

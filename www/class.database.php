@@ -1,7 +1,12 @@
 <?php
+  /**
+   * @author Tobias Nolte <tobias@abygr.com>
+   * @link http://www.mndcntrl.com/ Developer Blog
+   */  
+
   class Database {
 
-    /*
+    /**
      * Path to configuration file for the database.
      *
      * It is recommendet to place the config file outside of
@@ -12,13 +17,10 @@
     // Stores database connection of type PDO.
     private $database;
 
-    /*
+    /**
      * Constructor
      * 
      * Parses the config file and creates the PDO object.
-     *
-     * @param null
-     * @return null
      */
     public function __construct () {
       $config = parse_ini_file ($this -> config_file);
@@ -34,13 +36,10 @@
       }
     }
 
-    /*
+    /**
      * Destructor
      * 
      * Disconnects the Database.
-     *
-     * @param null
-     * @return null
      */
     public function __destruct () {
       $this -> database = null;
@@ -50,11 +49,11 @@
       $this -> database = null;
     }
 
-    /*
+    /**
      * query
      *
-     * @param string Query to be executed
-     * @return PDO Object Query output
+     * @param string $query Query to be executed
+     * @return mixed[] PDO Object Query output
      */
     public function query ($query) {
       $statement = $this -> database -> prepare ($query);
@@ -64,11 +63,11 @@
       return $result;
     }
 
-    /*
+    /**
      * cleanData strips the PDO object from unused values.
      *
-     * @param $data : array
-     * @return $data : array
+     * @param mixed[] $data
+     * @return mixed[] $data
      */
     public function cleanData ($data) {
       foreach ($data as &$subset) {

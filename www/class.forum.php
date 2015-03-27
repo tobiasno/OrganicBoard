@@ -1,4 +1,9 @@
 <?php
+  /**
+   * @author Tobias Nolte <tobias@abygr.com>
+   * @link http://www.mndcntrl.com/ Developer Blog
+   */  
+
   require_once ("class.database.php");
   require_once ("class.clock.php");
 
@@ -22,6 +27,9 @@
           + 0.25000000
         )'; // Voodoo-Magic
   
+    /**
+     * Constructor.
+     */
     public function __construct () {
       $this -> database = new Database ();
       $this -> clock = new Clock ();
@@ -29,6 +37,14 @@
 
     // Taking requests
 
+    /**
+     * Returns complete HTML for the board.
+     *
+     * @param string $topic
+     * @param integer $id
+     * @param integer $time_since_last_visit
+     * @return string
+     */
     public function getBoard ($topic, $post, $time_since_last_visit) {
       $this -> time_since_last_visit = $time_since_last_visit;
       $this -> purge ();
@@ -38,6 +54,13 @@
       return $output;
     }
 
+    /**
+     * Returns complete HTML for a single post.
+     *
+     * @param integer $id
+     * @param string $post
+     * @return string
+     */
     public function getSingle ($id, $post) {
       $this -> writeReply ((int)$id, $post);
       $output = $this -> composeSingle ((int)$id);
@@ -46,6 +69,12 @@
 
     // Composing of the frontpage
 
+    /**
+     * Returns HTML for the board
+     *
+     * @param string $topic
+     * @return string
+     */
     private function composeBoard ($topic = '') {
       $data = null;
       if ((string)$topic === '') {
@@ -75,6 +104,12 @@
       return $output;
     }
 
+    /**
+     * Returns HTML for one post on the board
+     *
+     * @param mixed[] $post_data
+     * @return string
+     */
     private function composeBoardPost ($post_data) {
       $output = '
           <div class="board_post">
@@ -95,6 +130,12 @@
       return $output;
     }
 
+    /**
+     * Returns HTML for the replies on the board.
+     *
+     * @param integer $is
+     * @return string
+     */
     private function composeBoardReplies ($id) {
       $data = $this -> database -> query ('
           SELECT *
@@ -117,6 +158,12 @@
       return '';
     }
 
+    /**
+     * Returns HTML for one reply on the board.
+     *
+     * @param mixed[] $reply_data
+     * @return string
+     */
     private function composeBoardReply ($reply_data) {
       $output = '
           <div class="board_reply" id="'.$reply_data["id"].'">
@@ -127,6 +174,12 @@
       return $output;
     }
 
+    /**
+     * Composes the form to write a post. Preinserts topic.
+     *
+     * @param string $topic
+     * @return string
+     */
     private function composeOpenPostForm ($topic) {
       $output = '
           <div id="open_topic_form">
@@ -142,6 +195,11 @@
       return $output;
     }
 
+    /**
+     * Composes the list of topics.
+     *
+     * @return string
+     */
     private function composeTopicsList () {
       $data = $this -> database -> query ('
           SELECT topic, number_of_occurrences
@@ -168,6 +226,12 @@
 
     // Compose single thread
 
+    /**
+     * Returns HTML for a single view of a post.
+     *
+     * @param integer $id
+     * @return string
+     */
     private function composeSingle ($id) {
       $data = $this -> database -> query ('
           SELECT *
@@ -196,6 +260,12 @@
       return $output;
     }
 
+    /**
+     * Returns HTML for the replies in a single post.
+     *
+     * @param integer $id
+     * @return string
+     */
     private function composeSingleReplies ($id) {
       $data = $this -> database -> query ('
           SELECT *
@@ -213,6 +283,12 @@
       return '';
     }
 
+    /**
+     * Returns HTML for one reply in a single post.
+     *
+     * @param mixed[] $reply_data
+     * @return string
+     */
     private function composeSingleReply ($reply_data) {
       $output = '
           <div class="single_reply" id="'.$reply_data["id"].'">
@@ -223,6 +299,12 @@
       return $output;
     }
 
+    /**
+     * Composes the form to answer a post.
+     *
+     * @param integer $id
+     * @return string
+     */
     private function composeAnswerForm ($id) {
       $output = '
           <div id="answer_form_headline">Antworten</div>
@@ -236,6 +318,12 @@
 
     // Additions for displaying content
 
+    /**
+     * Automatically makes links clickable, new lines visible etc.
+     *
+     * @param string $text
+     * @return string
+     */
     private function enhanceContent($text){
           $text = preg_replace('!(((f|ht)tp(s)?://)[-a-zA-Zа-яА-Я()0-9@:%_+.~#?&;//=]+)!i', '<a href="$1" target="_blanc">$1</a>', $text);
           $text = nl2br ($text);
@@ -244,6 +332,12 @@
     
     // Writing to the database
 
+    /**
+     * Writes post to the database.
+     *
+     * @param mixed[] $post
+     * @return boolean
+     */
     private function writePost ($post) {
       if (empty ($post) || $post["headline"] === '' || $post["content"] === '') {
         return false;
@@ -264,6 +358,13 @@
       }
     }
 
+    /**
+     * Writes a reply to the database.
+     *
+     * @param integer $id
+     * @param mixed[] $post
+     * @return boolean
+     */
     private function writeReply ($id, $post) {
       if (empty ($post) || $post["content"] === '') {
         return false;
@@ -285,6 +386,12 @@
       }
     }
 
+    /**
+     * Cleans the input from dangerous chars.
+     *
+     * @param mixed[] $post
+     * @return string
+     */
     private function cleanInput ($post) {
       if ($post["name"] === '') {
         $post["name"] = "Anonymous";
@@ -298,6 +405,9 @@
 
     // Purge unwanted posts
 
+    /**
+     * Deletes unwanted posts from the database.
+     */
     private function purge () {
       $data = $this -> database -> query ('
           SELECT TIMESTAMPDIFF(
@@ -325,6 +435,11 @@
       }
     }
 
+    /**
+     * Deletes one post
+     *
+     * @param integer $post
+     */
     private function purgePost ($id) {
       $this -> database -> query ('
           DELETE FROM posts
@@ -335,6 +450,9 @@
 
     // Index the topics
     
+    /**
+     * Gets most popular topics and creates ordered table.
+     */
     public function indexTopics () {
       $data = $this -> database -> query ('
           SELECT TIMESTAMPDIFF(
