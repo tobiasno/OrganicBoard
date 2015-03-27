@@ -56,6 +56,10 @@ button {
 
 /* Board */
 
+.new {
+color: #D4EE5E;
+}
+
 #topics_list_box {
   background: url("wood_bg.jpg") repeat left top;
   padding: 4rem 8rem;

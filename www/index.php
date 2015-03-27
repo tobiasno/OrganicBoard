@@ -1,3 +1,9 @@
+<?php
+  require_once ("class.cookiemonster.php");
+  $cookiemonster = new CookieMonster ();
+  $cookiemonster -> setMyCookie ();
+?>
+
 <!DOCTYPE html>
 <html lang="de">
   <head>
@@ -21,7 +27,7 @@
     $_GET["topic"] = "";
   }
 
-  echo $forum -> getBoard ($_GET["topic"], $_POST);
+  echo $forum -> getBoard ($_GET["topic"], $_POST, $cookiemonster -> getTimeSinceLastVisit ($_COOKIE));
 ?>
 
   </body>

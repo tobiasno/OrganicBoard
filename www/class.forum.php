@@ -5,6 +5,7 @@
   class Forum {
     private $database;
     private $clock;
+    private $time_since_last_visit;
     private $posts_on_frontpage = 100; // Number of posts shown on frontpage
     private $replies_on_frontpage = 5; // Number of replies shon in preview on frontpage
     private $purge_interval = 2880; // in minutes
@@ -28,7 +29,8 @@
 
     // Taking requests
 
-    public function getBoard ($topic, $post) {
+    public function getBoard ($topic, $post, $time_since_last_visit) {
+      $this -> time_since_last_visit = $time_since_last_visit;
       $this -> purge ();
       $this -> writePost ($post);
       $this -> indexTopics ();
@@ -77,7 +79,9 @@
       $output = '
           <div class="board_post">
             <div class="board_post_area">
-              <div class="board_headline"><a href="'.$this -> single_path . $post_data["id"] .'">'.$post_data["headline"].'</a></div>
+              <div class="board_headline">
+                <a href="'.$this -> single_path . $post_data["id"] .'">'.($this -> time_since_last_visit < $this -> clock -> getDifference ($post_data["date"], $this -> clock -> getTimestamp ()) ? '' : '<span class="new">[Neu]</span> ').$post_data["headline"].'</a>
+              </div>
               <div class="board_content">'.$this -> enhanceContent ($post_data["content"]).'</div>
               <div class="board_author">von <strong>'.$post_data["author"].'</strong></div>
               <div class="board_date">um <a href="'.$this -> single_path . $post_data["id"] .'">'.$post_data["date"].'</a></div>
@@ -117,7 +121,7 @@
       $output = '
           <div class="board_reply" id="'.$reply_data["id"].'">
             <div class="board_reply_content">'.$this -> enhanceContent ($reply_data["content"]).'</div>
-            <div class="board_reply_author">von <strong>'.$reply_data["author"].'</strong></div>
+            <div class="board_reply_author">'.($this -> time_since_last_visit < $this -> clock -> getDifference ($reply_data["date"], $this -> clock -> getTimestamp ()) ? '' : '<span class="new">[Neu]</span> ').'von <strong>'.$reply_data["author"].'</strong></div>
             <div class="board_reply_date">um <a href="'.$this -> single_path . $reply_data["post_ref"].'#'.$reply_data["id"].'">'.$reply_data["date"].'</a></div>
           </div>';
       return $output;
