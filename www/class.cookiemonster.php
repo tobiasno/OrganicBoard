@@ -5,7 +5,7 @@
     private $clock;
     private $cookie_name = "OrganicBoard";
     private $cookie_life = "30"; // in days
-    private $domain = ".mndcntrl.com";
+    private $domain = ".asthecrowflies.de";
 
     public function __construct () {
       $this -> clock = new Clock ();
