@@ -308,7 +308,7 @@
             SELECT id
             FROM posts
             WHERE '.$this -> scoring_algorithm.' <= 0.0002
-            OR LENGTH(content) <= 32
+            OR LENGTH(content) <= 100
             ORDER BY id ASC;');
         $data = $this -> database -> cleanData ($data);
         foreach ($data as $post) {
