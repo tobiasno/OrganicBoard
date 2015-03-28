@@ -407,6 +407,7 @@
 
     /**
      * Deletes unwanted posts from the database.
+     * Contains purge rules!
      */
     private function purge () {
       $data = $this -> database -> query ('
@@ -423,6 +424,7 @@
             FROM posts
             WHERE '.$this -> scoring_algorithm.' <= 0.0002
             OR LENGTH(content) <= 140
+            OR topic = "spam"
             ORDER BY id ASC;');
         $data = $this -> database -> cleanData ($data);
         foreach ($data as $post) {
