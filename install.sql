@@ -32,8 +32,8 @@ INSERT INTO `cron_dates` (`id`, `last_purge`, `last_topic_index`) VALUES
 CREATE TABLE IF NOT EXISTS `posts` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `date` datetime NOT NULL,
-  `author` varchar(16) NOT NULL,
-  `headline` varchar(64) NOT NULL,
+  `author` varchar(32) NOT NULL,
+  `headline` varchar(128) NOT NULL,
   `content` text NOT NULL,
   `topic` varchar(20) NOT NULL,
   `last_reply` datetime NOT NULL,
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `replies` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `post_ref` bigint(20) unsigned NOT NULL,
   `date` datetime NOT NULL,
-  `author` varchar(16) NOT NULL,
+  `author` varchar(32) NOT NULL,
   `content` text NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
