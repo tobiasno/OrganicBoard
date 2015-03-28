@@ -326,6 +326,7 @@
      */
     private function enhanceContent($text){
           $text = preg_replace('!(((f|ht)tp(s)?://)[-a-zA-Zа-яА-Я()0-9@:%_+.~#?&;//=]+)!i', '<a href="$1" target="_blanc">$1</a>', $text);
+          $text = preg_replace('#&lt;(/?(?:i|b|u|ul|li|ol))&gt;#', '<\1>', $text);
           $text = nl2br ($text);
           return $text;
     }
