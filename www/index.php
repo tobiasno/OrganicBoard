@@ -2,11 +2,13 @@
   /**
    * @author Tobias Nolte <tobias@abygr.com>
    * @link http://www.mndcntrl.com/ Developer Blog
-   */  
+   */
 
   require_once ("class.cookiemonster.php");
   $cookiemonster = new CookieMonster ();
   $cookiemonster -> setMyCookie ();
+
+  echo ("<!-- Powered by OrganicBoard -->");
 ?>
 
 <!DOCTYPE html>
@@ -17,6 +19,7 @@
     <title>Forum</title>
   </head>
   <body>
+    <a href="impressum.html" id="imprint_link">Impressum</a>
 
 <?php
   error_reporting (-1);

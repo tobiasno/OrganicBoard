@@ -65,10 +65,18 @@ button {
   background: #FF4242 !important;
 }
 
+#imprint_link {
+  font-size: 0.6rem;
+  color: #666666;
+  position: absolute;
+  top: 0.1rem;
+  right: 0.1rem;
+}
+
 /* Board */
 
 .new {
-color: #542437;
+color: #F02311;
 }
 
 #topics_list_box {

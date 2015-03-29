@@ -3,7 +3,10 @@
    * @author Tobias Nolte <tobias@abygr.com>
    * @link http://www.mndcntrl.com/ Developer Blog
    */  
+
+  echo ("<!-- Powered by OrganicBoard -->");
 ?>
+
 <!DOCTYPE html>
 <html lang="de">
   <head>
@@ -12,6 +15,7 @@
     <title>Forum</title>
   </head>
   <body>
+    <a href="impressum.html" id="imprint_link">Impressum</a>
 
 <?php
   error_reporting (-1);
