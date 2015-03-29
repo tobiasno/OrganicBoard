@@ -76,7 +76,8 @@ button {
 /* Board */
 
 .new {
-color: #F02311;
+  color: #F02311;
+  font-weight: bold;
 }
 
 #topics_list_box {
