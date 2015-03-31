@@ -26,9 +26,8 @@
       $config = parse_ini_file ($this -> config_file);
       try {
         $this -> database = new PDO ('mysql:host='.$config['host'].';dbname='. $config['dbname'], $config['username'], $config['password']);
-        // $this -> database -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        // $this -> database -> query("set character set utf8");
-        // $this -> database -> query("set names utf8");
+        $this -> database -> query("set character set utf8");
+        $this -> database -> query("set names utf8");
       }
       catch (PDOException $e) {
         print "Error!: " . $e -> getMessage () . "<br/>";
@@ -45,6 +44,9 @@
       $this -> database = null;
     }
 
+    /**
+     * Disconnects the Database.
+     */
     public function disconnect () {
       $this -> database = null;
     }

@@ -12,6 +12,9 @@
     private $cookie_life = "30"; // in days
     private $domain = "board.asthecrowflies.de";
 
+    /**
+     * Constructor
+     */
     public function __construct () {
       $this -> clock = new Clock ();
     }
