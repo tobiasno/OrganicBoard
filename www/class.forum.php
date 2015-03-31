@@ -8,17 +8,25 @@
   require_once ("class.clock.php");
 
   class Forum {
+    // Objects
     private $database;
     private $clock;
+    // Internally used variable
     private $time_since_last_visit;
+    // Configuration of frontpage appearience
     private $posts_on_frontpage = 100; // Number of posts shown on frontpage
     private $replies_on_frontpage = 5; // Number of replies shon in preview on frontpage
+    // Configuration for purging unwanted posts
     private $purge_interval = 4320; // in minutes
+    private $purge_threshold = 0.0002;
+    // Configuration of tpoics behaviour
     private $index_topics_interval = 120; // in minutes
     private $index_topics_number = 50; // Number of Topics shown on frontpage
+    // Path variables of the forum
     private $path = '';
     private $single_path = 'single.php?id=';
     private $topic_path = '?topic=';
+    // Behavioral algorithms
     private $scoring_algorithm = '
         100.00000000 * POWER(number_of_replies + 1.00000000, 0.50000000)
         / (
@@ -26,6 +34,9 @@
           * (TIMESTAMPDIFF(HOUR, last_reply, NOW()) + 0.00000000)
           + 0.25000000
         )'; // Voodoo-Magic
+    private $spam_recognition_algorithm = '
+        OR LENGTH(content) <= 140
+        OR topic = "spam"';
   
     /**
      * Constructor.
@@ -423,10 +434,9 @@
         $data = $this -> database -> query ('
             SELECT id
             FROM posts
-            WHERE '.$this -> scoring_algorithm.' <= 0.0002
-            OR LENGTH(content) <= 140
-            OR topic = "spam"
-            ORDER BY id ASC;');
+            WHERE '.$this -> scoring_algorithm.' <= '.$this -> purge_threshold.' '.
+            $this -> spam_recognition_algorithm.'
+            ORDER BY id ASC;'); // note relevant white space
         $data = $this -> database -> cleanData ($data);
         foreach ($data as $post) {
           $this -> purgePost ($post["id"]);
