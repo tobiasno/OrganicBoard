@@ -126,7 +126,9 @@
           <div class="board_post">
             <div class="board_post_area">
               <div class="board_headline">
-                <a href="'.$this -> single_path . $post_data["id"] .'">'.($this -> time_since_last_visit < $this -> clock -> getDifference ($post_data["date"], $this -> clock -> getTimestamp ()) ? '' : '<span class="new">[Neu]</span> ').$post_data["headline"].'</a>
+                <a href="'.$this -> single_path . $post_data["id"] .'">'.
+                ($this -> time_since_last_visit < $this -> clock -> getDifference ($post_data["date"], $this -> clock -> getTimestamp ()) ? '' : '<span class="new">[Neu]</span> ')
+                .$post_data["headline"].'</a>
               </div>
               <div class="board_content">'.$this -> enhanceContent ($post_data["content"]).'</div>
               <div class="board_author">von <strong>'.$post_data["author"].'</strong></div>
@@ -179,7 +181,9 @@
       $output = '
           <div class="board_reply" id="'.$reply_data["id"].'">
             <div class="board_reply_content">'.$this -> enhanceContent ($reply_data["content"]).'</div>
-            <div class="board_reply_author">'.($this -> time_since_last_visit < $this -> clock -> getDifference ($reply_data["date"], $this -> clock -> getTimestamp ()) ? '' : '<span class="new">[Neu]</span> ').'von <strong>'.$reply_data["author"].'</strong></div>
+            <div class="board_reply_author">'.
+            ($this -> time_since_last_visit < $this -> clock -> getDifference ($reply_data["date"], $this -> clock -> getTimestamp ()) ? '' : '<span class="new">[Neu]</span> ')
+            .'von <strong>'.$reply_data["author"].'</strong></div>
             <div class="board_reply_date">um <a href="'.$this -> single_path . $reply_data["post_ref"].'#'.$reply_data["id"].'">'.$reply_data["date"].'</a></div>
           </div>';
       return $output;
