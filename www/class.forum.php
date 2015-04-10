@@ -225,7 +225,7 @@
       $output = '
           <div id="topics_list_box">
             <div id="topics_list">
-              <div id="topics_list_headline">Top 50 Themen</div>
+              <div id="topics_list_headline">Top '.$this -> index_topics_number.' Themen</div>
               <ul>';
       foreach ($data as $item) {
         if (!($item["topic"] === '')) {
