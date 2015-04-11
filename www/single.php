@@ -3,8 +3,6 @@
    * @author Tobias Nolte <tobias@abygr.com>
    * @link http://www.mndcntrl.com/ Developer Blog
    */  
-
-  echo ("<!-- Powered by OrganicBoard -->");
 ?>
 
 <!DOCTYPE html>
@@ -12,9 +10,11 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="style.css">
-    <title>Forum</title>
+    <title>With a grain of salt</title>
   </head>
   <body>
+  
+    <!-- Powered by OrganicBoard -->
     <a href="impressum.html" id="imprint_link">Impressum</a>
 
 <?php

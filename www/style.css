@@ -75,6 +75,12 @@ button {
 
 /* Board */
 
+#help_link {
+color: #FF4242;
+font-size: 75%;
+margin: 0 0 0 3rem;
+}
+
 .new {
   color: #F02311;
   font-weight: bold;

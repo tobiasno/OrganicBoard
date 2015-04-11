@@ -1,0 +1,66 @@
+Organic Board -- Hilfe
+=====================
+
+== Einleitung
+
+Bei _Organic Board_ handelt es sich um eine experimentelle Forensoftware die sich etwas anders verhält, als übliche Webforen. Daher gibt es hier ein paar zusätzliche Erklärungen zu den offensichtlichen Fragen, um dem Benutzer eine Hand zu reichen.
+
+.Themen abonnieren
+TIP: Themen können durch Bookmarks im Browser besonders komfortabel verwaltet werden.
+
+.Einheitlich
+IMPORTANT: Optimal ist es Themen als ein zusammenhängendes Wort mit Großbuchstaben am Anfang zu wählen.
+
+== Bedienung
+
+=== Die Eingabefelder
+
+[glossary]
+Name::
+  Name des Autors. Falls leer gelassen, wird _Anonymous_ eingetragen.
+Überschrift::
+  Überschrift des Beitrags. Darf nicht leer sein.
+Thema::
+  Name des Themas unter dem der Beitrag abgelegt wird. Themen dienen dazu Beiträge zu finden und nur eine Auswahl anzuzeigen. Ein Thema zu wählen ist empfohlen. Ein Beitrag kann nur unter einem Thema abgelegt werden und es ist sinnvoll kurze, aussagekräftige Themen zu wählen und auf Groß- und Kleinschreibung zu achten. Wird bereits nach einem Thema gefiltert, wird selbiges automatisch ins Formular eingetragen.
+Text::
+  Inhalt des Beitrags. Darf nicht leer sein. Zeilenumbrüche werden normal erkannt und es können bestimmte HTML-Tags zur Textformatierung genutzt werden. Außerdem werden URLs automatisch zu Links.
+
+TIP: Themen verhalten sich ähnlich wie Subforen in anderen Boards, nur dass sie hier von den Nutzern bestimmt werden. Beiträge lassen sich gut in bereits verwendete Themen einordnen. Mit einem Bookmark im Browser kann man ein Thema abonnieren, wie ein Subforum.
+
+TIP: Erlaubte HTML-Tags sind z.B. *b*, *i*, *u* sowie *Listen*.
+
+IMPORTANT: Themen sollten besonders sorgfältig gewählt werden.
+
+CAUTION: Beiträge können nicht nachträglich geändert werden.
+
+=== Als neu markierte Inhalte
+
+Das Forum verwendet Cookies, um zu bestimmen welche Inhalte der Nutzer noch nicht gesehen hat. So können neue Beiträge und Antworten auch leicht gesehen werden, wenn sie nicht an erster Stelle stehen.
+
+IMPORTANT: Der Cookie enthält keine Identifikationsnummer des Nutzers.
+
+=== Anzeigen auf mobilen Geräten
+
+Es ist empfohlen mobile Geräte auf die Seite zu drehen wie in der Panoramaansicht. So wird das Forum dank Nutzung spezieller CSS Einheiten besser dargestellt.
+
+== Arbeitsweise des Forums
+
+=== Sortierung der Posts
+
+Die Reihenfolge der Beiträge auf der Startseite wird nicht durch ein simples Kriterium wie etwa die chronologische Reihenfolge bestimmt. Es werden viele Eigenschaften der Einträge und Antworten herangezogen, um mit Hilfe von etwas Mathematik gute Beiträge, lebhafte Diskussionen, etc. nach vorn zu sortieren und Andere nach hinten verschwinden zu lassen.
+
+NOTE: Es ist also völlig normal, wenn neu erstellte Einträge nicht an erster Stelle erscheinen oder wenn sich die Sortierung der Beiträge nicht einfach erschließen lässt.
+
+=== Automatische Reinigung und Moderation
+
+Nach speziell berechneten Kriterien kann es vorkommen, dass Beiträge nicht mehr auf der Startseite angezeigt oder sogar vollständig gelöscht werden können. Früher oder später wird jeder Inhalt des Forums von diesem Schicksal ereilt werden, je nach dem wie aktiv ein Beitrag diskutiert wird, etc.
+
+=== Schutz vor Spam
+
+Zusätzlich versucht die Software Spam automatisiert zu erkennen und zeitnahe zu entfernen. Beiträge, die unter dem Thema _spam_ abgelegt werden, werden zusätzlich früher, aber nicht sofort entfernt.
+
+NOTE: Nutzer können das Thema _spam_ verwenden, um Funktionen des Forums zu testen, ohne anhaltende Unordnung zu verursachen.
+
+=== Caching
+
+Manche Aufgaben werden vom Forum nur in gewissen Abständen ausgeführt. Es ist z.B. üblich, dass Themen nicht sofort der Liste hinzugefügt werden.

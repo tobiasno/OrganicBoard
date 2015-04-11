@@ -204,7 +204,7 @@
               <input type="text" maxlength="64" id="headline" name="headline" placeholder="Überschrift"><br>
               <input type="text" maxlength="20" id="topic" name="topic" placeholder="Thema (optional)" value="'.$topic.'"><br>
               <textarea type="text" id="content" name="content" placeholder="Text"></textarea><br>
-              <button type="submit">Los!</button>
+              <button type="submit">Los!</button><a href="./doc/userguide.html" target="_blank" id="help_link">Hilfe</a>
             </form>
           </div>';
       return $output;
@@ -340,7 +340,7 @@
      * @return string
      */
     private function enhanceContent($text){
-          $text = preg_replace('!(((f|ht)tp(s)?://)[-a-zA-Zа-яА-Я()0-9@:%_+.~#?&;//=]+)!i', '<a href="$1" target="_blanc">$1</a>', $text);
+          $text = preg_replace('!(((f|ht)tp(s)?://)[-a-zA-Zа-яА-Я()0-9@:%_+.~#?&;//=]+)!i', '<a href="$1" target="_blank">$1</a>', $text);
           $text = preg_replace('#&lt;(/?(?:i|b|u|ul|li|ol))&gt;#', '<\1>', $text);
           $text = nl2br ($text);
           return $text;
