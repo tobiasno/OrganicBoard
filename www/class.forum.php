@@ -342,8 +342,29 @@
     private function enhanceContent($text){
           $text = preg_replace('!(((f|ht)tp(s)?://)[-a-zA-Zа-яА-Я()0-9@:%_+.~#?&;//=]+)!i', '<a href="$1" target="_blank">$1</a>', $text);
           $text = preg_replace('#&lt;(/?(?:i|b|u|ul|li|ol))&gt;#', '<\1>', $text);
+          $text = $this -> closeTags ($text);
           $text = nl2br ($text);
           return $text;
+    }
+
+    private function closeTags ($html) {
+      preg_match_all ('#<([a-z]+)(?: .*)?(?<![/|/ ])>#iU', $html, $result);
+      $opened_tags = $result[1];
+      preg_match_all ('#</([a-z]+)>#iU', $html, $result);
+      $closed_tags = $result[1];
+      $len_opened = count($opened_tags);
+      if (count ($closed_tags) == $len_opened) {
+        return $html;
+      }
+      $opened_tags = array_reverse ($opened_tags);
+      for ($i = 0; $i < $len_opened; $i++) {
+        if (!in_array ($opened_tags[$i], $closed_tags)){
+          $html .= '</'.$opened_tags[$i].'>';
+        } else {
+          unset ($closed_tags[array_search ($opened_tags[$i], $closed_tags)]);
+        }
+      }
+      return $html;
     }
     
     // Writing to the database
