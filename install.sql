@@ -38,7 +38,8 @@ CREATE TABLE IF NOT EXISTS `posts` (
   `topic` varchar(20) NOT NULL,
   `last_reply` datetime NOT NULL,
   `number_of_replies` bigint(20) unsigned NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unique_content` (`content`(128))
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
@@ -51,7 +52,8 @@ CREATE TABLE IF NOT EXISTS `replies` (
   `date` datetime NOT NULL,
   `author` varchar(32) NOT NULL,
   `content` text NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unique_reply` (`post_ref`,`author`,`content`(64))
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
