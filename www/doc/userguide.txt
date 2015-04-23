@@ -27,7 +27,7 @@ Text::
 
 TIP: Themen verhalten sich ähnlich wie Subforen in anderen Boards, nur dass sie hier von den Nutzern bestimmt werden. Beiträge lassen sich gut in bereits verwendete Themen einordnen. Mit einem Bookmark im Browser kann man ein Thema abonnieren, wie ein Subforum.
 
-TIP: Erlaubte HTML-Tags sind z.B. *b*, *i*, *u* sowie *Listen*.
+TIP: Erlaubte HTML-Tags sind z.B. *b*, *i*, *u*, *del* sowie *Listen*.
 
 IMPORTANT: Themen sollten besonders sorgfältig gewählt werden.
 
@@ -64,3 +64,7 @@ NOTE: Nutzer können das Thema _spam_ verwenden, um Funktionen des Forums zu tes
 === Caching
 
 Manche Aufgaben werden vom Forum nur in gewissen Abständen ausgeführt. Es ist z.B. üblich, dass Themen nicht sofort der Liste hinzugefügt werden.
+
+== Bugs
+
+Falls jemand einen Fehler in der Software findet oder sonst etwas nicht so funktioniert wie es sollte, bitte eine E-Mail mit möglichst genauer Beschreibung der Sache an _mail (at) grainofsalt.de_.

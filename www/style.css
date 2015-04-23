@@ -156,6 +156,10 @@ font-size: 2rem;
   width: 28%;
 }
 
+.board_post:nth-child(3n+1) {
+  clear: left;
+}
+
 .board_post_area {
   padding: 0.5rem;
   background: #F0F2EB;
