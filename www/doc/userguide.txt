@@ -11,6 +11,9 @@ TIP: Themen können durch Bookmarks im Browser besonders komfortabel verwaltet w
 .Einheitlich
 IMPORTANT: Optimal ist es Themen als ein zusammenhängendes Wort mit Großbuchstaben am Anfang zu wählen.
 
+.Aufmerksamkeit
+TIP: Wenn Ihr wollt, dass ein Thema schneller verschwindet, ist es am effektivsten es zu ignorieren.
+
 == Bedienung
 
 === Die Eingabefelder
@@ -28,8 +31,6 @@ Text::
 TIP: Themen verhalten sich ähnlich wie Subforen in anderen Boards, nur dass sie hier von den Nutzern bestimmt werden. Beiträge lassen sich gut in bereits verwendete Themen einordnen. Mit einem Bookmark im Browser kann man ein Thema abonnieren, wie ein Subforum.
 
 TIP: Erlaubte HTML-Tags sind z.B. *b*, *i*, *u*, *del* sowie *Listen*.
-
-IMPORTANT: Themen sollten besonders sorgfältig gewählt werden.
 
 CAUTION: Beiträge können nicht nachträglich geändert werden.
 
