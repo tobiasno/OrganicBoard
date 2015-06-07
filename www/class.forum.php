@@ -18,7 +18,7 @@
     private $replies_on_frontpage = 5; // Number of replies shon in preview on frontpage
     // Configuration for purging unwanted posts
     private $purge_interval = 1440; // in minutes
-    private $purge_threshold = 0.0002;
+    private $purge_threshold = 0.06;
     // Configuration of tpoics behaviour
     private $index_topics_interval = 120; // in minutes
     private $index_topics_number = 50; // Number of Topics shown on frontpage
