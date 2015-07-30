@@ -7,7 +7,7 @@
 
 @font-face {
   font-family: OpenSans;
-  src: url('OpenSans-Regular.ttf');
+  src: url('../fonts/OpenSans-Regular.ttf');
 }
 
 /* General */
@@ -87,7 +87,7 @@ margin: 0 0 0 3rem;
 }
 
 #topics_list_box {
-  background: url("wood_bg.jpg") repeat left top;
+  background: url("../img/wood_bg.jpg") repeat left top;
   padding: 4rem 8rem;
 }
 
@@ -145,7 +145,7 @@ font-size: 2rem;
 
 #board_box {
   width: 100%;
-  background: url("seamless_bg.jpg") repeat left top;
+  background: url("../img/seamless_bg.jpg") repeat left top;
   padding: 1rem 0.5rem;
   overflow: auto;
 }

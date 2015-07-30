@@ -12,7 +12,7 @@
      * It is recommendet to place the config file outside of
      * the web directory to prevent access by third parties.
      */
-    private $config_file = "./db_config.ini";
+    private $config_file = "config/mysql_config.ini";
 
     // Stores database connection of type PDO.
     private $database;

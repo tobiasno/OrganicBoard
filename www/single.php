@@ -2,25 +2,27 @@
   /**
    * @author Tobias Nolte <tobias@abygr.com>
    * @link http://www.mndcntrl.com/ Developer Blog
-   */  
+   */
+
+  require_once ("common/php/path.php");
 ?>
 
 <!DOCTYPE html>
 <html lang="de">
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo PATH_CSS; ?>style.css">
     <title>With a grain of salt</title>
   </head>
   <body>
   
     <!-- Powered by OrganicBoard -->
-    <a href="impressum.html" id="imprint_link">Impressum</a>
+    <a href="http://www.mndcntrl.com/impressum.html" id="imprint_link">Impressum</a>
 
 <?php
   error_reporting (-1);
 
-  require_once ("class.forum.php");
+  require_once (PATH_PHP . "class.forum.php");
   $forum = new Forum ();
 
   if(!isset($_GET["id"])) {

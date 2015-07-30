@@ -4,7 +4,8 @@
    * @link http://www.mndcntrl.com/ Developer Blog
    */  
 
-  require_once ("class.clock.php");
+  require_once ("common/php/path.php");
+  require_once (PATH_PHP . "class.clock.php");
 
   class CookieMonster {
     private $clock;

@@ -4,7 +4,8 @@
    * @link http://www.mndcntrl.com/ Developer Blog
    */
 
-  require_once ("class.cookiemonster.php");
+  require_once ("common/php/path.php");
+  require_once (PATH_PHP . "class.cookiemonster.php");
   $cookiemonster = new CookieMonster ();
   $cookiemonster -> setMyCookie ();
 ?>
@@ -13,7 +14,7 @@
 <html lang="de">
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo PATH_CSS;?>style.css">
     <title>With a grain of salt</title>
   </head>
   <body>
@@ -24,7 +25,7 @@
 <?php
   error_reporting (-1);
 
-  require_once ("class.forum.php");
+  require_once (PATH_PHP . "class.forum.php");
   $forum = new Forum ();
 
   if(!isset($_GET["id"])) {
