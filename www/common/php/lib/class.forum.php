@@ -467,7 +467,6 @@
 
     /**
      * Deletes unwanted posts from the database.
-     * Contains purge rules!
      */
     private function purge () {
       $data = $this -> database -> query ('
