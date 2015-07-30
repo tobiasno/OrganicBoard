@@ -19,7 +19,7 @@
     private $replies_on_frontpage = 5; // Number of replies shon in preview on frontpage
     // Configuration for purging unwanted posts
     private $purge_interval = 1440; // in minutes
-    private $purge_threshold = 0.06;
+    private $purge_threshold = 0.00005;
     // Configuration of tpoics behaviour
     private $index_topics_interval = 120; // in minutes
     private $index_topics_number = 50; // Number of Topics shown on frontpage
@@ -29,9 +29,12 @@
     private $topic_path = '?topic=';
     // Behavioral algorithms
     private $scoring_algorithm = '
-        100.00000000 * POWER(number_of_replies + 1.00000000, 0.50000000)
+        100.00000000 * (
+          POWER(number_of_replies + 1.00000000, 0.50000000)
+          + POWER((number_of_clicks * 0.00500000) + 1.00000000, 0.50000000)
+        )
         / (
-          TIMESTAMPDIFF(HOUR, date, NOW()) + 0.00000000
+          (TIMESTAMPDIFF(HOUR, date, NOW()) + 0.00000000)
           * (TIMESTAMPDIFF(HOUR, last_reply, NOW()) + 0.00000000)
           + 0.25000000
         )'; // Voodoo-Magic
@@ -74,6 +77,7 @@
      * @return string
      */
     public function getSingle ($id, $post) {
+      $this -> countClick ((int)$id);
       $this -> writeReply ((int)$id, $post);
       $output = $this -> composeSingle ((int)$id);
       return $output;
@@ -445,6 +449,18 @@
         $post[$key] = htmlspecialchars ($value, ENT_QUOTES | ENT_HTML5, 'UTF-8');
       }
       return $post;
+    }
+
+    /**
+     * Counts a post being viewed
+     *
+     * @param int $post
+     */
+    private function countClick ($id) {
+      $this -> database -> query ('
+          UPDATE posts
+          SET number_of_clicks = number_of_clicks + 1
+          WHERE id = "'.$id.'";');
     }
 
     // Purge unwanted posts
