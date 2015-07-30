@@ -71,4 +71,4 @@ CREATE TABLE IF NOT EXISTS `topics` (
   `topic` varchar(64) NOT NULL,
   `number_of_occurrences` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
