@@ -1,5 +1,6 @@
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
+
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
@@ -21,7 +22,7 @@ CREATE TABLE IF NOT EXISTS `cron_dates` (
 --
 
 INSERT INTO `cron_dates` (`id`, `last_purge`, `last_topic_index`) VALUES
-(1, '2015-01-01 00:00:00', '2015-01-01 00:00:00');
+(1, '2015-07-30 10:19:18', '2015-07-30 22:25:07');
 
 -- --------------------------------------------------------
 
@@ -38,9 +39,12 @@ CREATE TABLE IF NOT EXISTS `posts` (
   `topic` varchar(20) NOT NULL,
   `last_reply` datetime NOT NULL,
   `number_of_replies` bigint(20) unsigned NOT NULL,
+  `number_of_clicks` bigint(20) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `unique_content` (`content`(128))
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `replies`
@@ -56,6 +60,8 @@ CREATE TABLE IF NOT EXISTS `replies` (
   UNIQUE KEY `unique_reply` (`post_ref`,`author`,`content`(64))
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
+-- --------------------------------------------------------
+
 --
 -- Table structure for table `topics`
 --
@@ -65,4 +71,4 @@ CREATE TABLE IF NOT EXISTS `topics` (
   `topic` varchar(64) NOT NULL,
   `number_of_occurrences` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
