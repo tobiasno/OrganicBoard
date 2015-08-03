@@ -402,6 +402,15 @@
               "'.$post["topic"].'", 
               "'.$this -> clock -> getTimestamp ().'",
               "0");');
+        // redirect user after submitting post
+        echo '
+            <script type="text/JavaScript">
+              <!--
+                redirectTime = "1000";
+                redirectURL = "'.$this -> single_path . $this -> database -> getInsertId ().'";
+                setTimeout("location.href = redirectURL;",redirectTime);
+              //   -->
+            </script>';
         return true;
       }
     }

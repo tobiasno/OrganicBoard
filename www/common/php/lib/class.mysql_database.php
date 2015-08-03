@@ -79,5 +79,14 @@
       }
       return $data;
     }
+
+    /**
+     * gets id of last inserted or updated record
+     *
+     * @return int id of last changed record
+     */
+    public function getInsertId () {
+      return $this -> database -> lastInsertId ();
+    }
   }
 ?>
