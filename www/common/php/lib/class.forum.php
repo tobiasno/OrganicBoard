@@ -403,15 +403,20 @@
               "'.$this -> clock -> getTimestamp ().'",
               "0");');
         // redirect user after submitting post
-        echo '
-            <script type="text/JavaScript">
-              <!--
-                redirectTime = "1000";
-                redirectURL = "'.$this -> single_path . $this -> database -> getInsertId ().'";
-                setTimeout("location.href = redirectURL;",redirectTime);
-              //   -->
-            </script>';
-        return true;
+        $insert_id = $this -> database -> getInsertId ();
+        if ((int)$insert_id === 0) {
+          echo "Fehler: Eintrag konnte nicht abgeschickt werden.";
+        } else {
+          echo '
+              <script type="text/JavaScript">
+                <!--
+                  redirectTime = "1000";
+                  redirectURL = "'.$this -> single_path . $insert_id .'";
+                  setTimeout("location.href = redirectURL;",redirectTime);
+                //   -->
+              </script>';
+        }
+          return true;
       }
     }
 
