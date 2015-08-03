@@ -27,6 +27,8 @@
     private $path = '';
     private $single_path = 'single.php?id=';
     private $topic_path = '?topic=';
+    // Messages
+    private $submit_error = "Fehler: Eintrag konnte nicht abgeschickt werden.";
     // Behavioral algorithms
     private $scoring_algorithm = '
         100.00000000 * (
@@ -405,7 +407,7 @@
         // redirect user after submitting post
         $insert_id = $this -> database -> getInsertId ();
         if ((int)$insert_id === 0) {
-          echo "Fehler: Eintrag konnte nicht abgeschickt werden.";
+          echo $this -> submit_error;
         } else {
           echo '
               <script type="text/JavaScript">
