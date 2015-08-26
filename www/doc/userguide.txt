@@ -40,10 +40,6 @@ Das Forum verwendet Cookies, um zu bestimmen welche Inhalte der Nutzer noch nich
 
 IMPORTANT: Der Cookie enthält keine Identifikationsnummer des Nutzers.
 
-=== Anzeigen auf mobilen Geräten
-
-Es ist empfohlen mobile Geräte auf die Seite zu drehen wie in der Panoramaansicht. So wird das Forum dank Nutzung spezieller CSS Einheiten besser dargestellt.
-
 == Arbeitsweise des Forums
 
 === Sortierung der Posts
