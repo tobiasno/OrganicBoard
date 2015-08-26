@@ -14,7 +14,8 @@
 <html lang="de">
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="<?php echo PATH_CSS;?>style.css">
+    <link rel="stylesheet" type="text/css" media="(orientation: landscape)" href="<?php echo PATH_CSS;?>style.css">
+    <link rel="stylesheet" type="text/css" media="(orientation: portrait)" href="<?php echo PATH_CSS;?>mobile.css">
     <title>With a grain of salt</title>
   </head>
   <body>
