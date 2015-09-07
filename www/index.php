@@ -21,7 +21,7 @@
   <body>
   
     <!-- Powered by OrganicBoard -->
-    <a href="http://www.mndcntrl.com/impressum.html" id="imprint_link">Impressum</a>
+    <a href="http:s//www.mndcntrl.com/impressum.html" id="imprint_link">Impressum</a>
 
 <?php
   error_reporting (-1);
