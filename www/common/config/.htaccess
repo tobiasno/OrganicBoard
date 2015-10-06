@@ -1,0 +1,3 @@
+<Files mysql_config.ini>
+  Deny from all
+</Files>
