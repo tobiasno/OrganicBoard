@@ -92,7 +92,7 @@ margin: 0 0 0 3rem;
 }
 
 #topics_list {
-  background: #E1EDB9;
+  background: #DCE6E6;
   border-radius: 15px;
   padding: 1rem;
 }
@@ -128,7 +128,7 @@ font-size: 2rem;
 }
 
 #open_topic_form {
-  background: #D4EE5E;
+  background: #BAC7C3;
   padding: 2rem 8rem;
   overflow: auto;
 }
@@ -234,7 +234,7 @@ font-size: 2rem;
 }
 
 #answer_form {
-  background: #D4EE5E;
+  background: #BAC7C3;
   padding: 1rem 4rem;
   margin: auto;
   text-align: left;
