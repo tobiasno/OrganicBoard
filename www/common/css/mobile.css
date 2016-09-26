@@ -64,6 +64,7 @@ a, a:hover {
 
 input, textarea, button {
   color: #050505;
+  font-family: 'OpenSans';
   font-size: 2rem;
   padding: 0.1rem 0.5rem;
   margin: 0.2rem;
