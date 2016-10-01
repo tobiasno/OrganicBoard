@@ -481,7 +481,7 @@
      * @return boolean
      */
     private function writeReply ($id, $post) {
-      if (empty ($post) || $post["content"] === '') {
+      if (empty ($post) || $post["content"] === '' || $id === 0) { // No replying to ID 0 to combat spam.
         return false;
       } else {
         $post = $this -> cleanInput ($post);
@@ -545,6 +545,7 @@
           LIMIT 1;');
       $data = $this -> database -> cleanData ($data);
       if ($data[0]["last_purge"] > $this -> purge_interval) {
+        // Remove Data deemed spam
         $data = $this -> database -> query ('
             SELECT id
             FROM posts
@@ -554,6 +555,17 @@
         $data = $this -> database -> cleanData ($data);
         foreach ($data as $post) {
           $this -> purgePost ($post["id"]);
+        }
+        // Remove orphaned replies
+        $data = $this -> database -> query ('
+            SELECT replies.id
+            FROM replies
+            LEFT JOIN posts
+            ON posts.id = replies.post_ref
+            WHERE posts.id IS NULL');
+        $data = $this -> database -> cleanData ($data);
+        foreach ($data as $post) {
+          $this -> purgeReply ($post["id"]);
         }
         $this -> database -> query ('
             UPDATE cron_dates
@@ -565,7 +577,7 @@
     /**
      * Deletes one post
      *
-     * @param integer $post
+     * @param integer $id
      */
     private function purgePost ($id) {
       $this -> database -> query ('
@@ -573,6 +585,17 @@
           WHERE id = "'.$id.'";
           DELETE FROM replies
           WHERE post_ref = "'.$id.'";');
+    }
+
+    /**
+     * Deletes one reply
+     *
+     * @param integer $id
+     */
+    private function purgeReply ($id) {
+      $this -> database -> query ('
+          DELETE FROM replies
+          WHERE id = "'.$id.'";');
     }
 
     // Index the topics
