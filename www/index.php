@@ -29,15 +29,19 @@
   require_once (PATH_PHP . "class.forum.php");
   $forum = new Forum ();
 
-  if(!isset($_GET["id"])) {
+  if (!isset ($_GET["id"])) {
     $_GET["id"] = 0;
   }
 
-  if(!isset($_GET["topic"])) {
+  if (!isset ($_GET["topic"])) {
     $_GET["topic"] = "";
   }
 
-  echo $forum -> getBoard ($_GET["topic"], $_POST, $cookiemonster -> getTimeSinceLastVisit ($_COOKIE));
+  if (!isset ($_GET["find"])) {
+    $_GET["find"] = "";
+  }
+
+  echo $forum -> getBoard ($_GET["topic"], $_GET["find"], $_POST, $cookiemonster -> getTimeSinceLastVisit ($_COOKIE));
 ?>
 
   </body>

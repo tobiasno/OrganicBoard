@@ -36,7 +36,7 @@
           + POWER((number_of_clicks * 0.00500000) + 1.00000000, 0.50000000)
         )
         / (
-          (TIMESTAMPDIFF(HOUR, date, NOW()) + 0.00000000)
+          (TIMESTAMPDIFF(HOUR, posts.date, NOW()) + 0.00000000)
           * (TIMESTAMPDIFF(HOUR, last_reply, NOW()) + 0.00000000)
           + 0.25000000
         )'; // Voodoo-Magic
@@ -62,12 +62,12 @@
      * @param integer $time_since_last_visit
      * @return string
      */
-    public function getBoard ($topic, $post, $time_since_last_visit) {
-      $this -> time_since_last_visit = $time_since_last_visit;
-      $this -> purge ();
-      $this -> writePost ($post);
-      $this -> indexTopics ();
-      $output = $this -> composeBoard ($topic);
+    public function getBoard ($topic, $find, $post, $time_since_last_visit) {
+        $this -> time_since_last_visit = $time_since_last_visit;
+        $this -> purge ();
+        $this -> writePost ($post);
+        $this -> indexTopics ();
+        $output = $this -> composeBoard ($topic, $find);
       return $output;
     }
 
@@ -93,20 +93,66 @@
      * @param string $topic
      * @return string
      */
-    private function composeBoard ($topic = '') {
+    private function composeBoard ($topic, $find) {
       $data = null;
-      if ((string)$topic === '') {
+      if ((string)$topic === '' && (string)$find === '') {
         $data = $this -> database -> query ('
             SELECT *
             FROM posts
             ORDER BY '.$this -> scoring_algorithm.' DESC
             LIMIT '. $this -> posts_on_frontpage.';');
       }
-      else {
+      else if ((string)$topic === '' && (string)$find != '') {
+        $data = $this -> database -> query ('
+            SELECT posts.id,
+                posts.date,
+                posts.author,
+                posts.headline,
+                posts.content,
+                posts.topic,
+                posts.last_reply,
+                posts.number_of_replies,
+                posts.number_of_clicks
+            FROM posts
+            LEFT JOIN replies
+            ON posts.id = replies.post_ref
+            WHERE posts.headline
+            LIKE "%'.$find.'%"
+            OR posts.content
+            LIKE "%'.$find.'%"
+            OR replies.content
+            LIKE "%'.$find.'%"
+            ORDER BY '.$this -> scoring_algorithm.' DESC
+            LIMIT '. $this -> posts_on_frontpage.';');
+      }
+      else if ((string)$topic != '' && (string)$find === '') {
         $data = $this -> database -> query ('
             SELECT *
             FROM posts
             WHERE topic = "'.$topic.'"
+            ORDER BY '.$this -> scoring_algorithm.' DESC
+            LIMIT '. $this -> posts_on_frontpage.';');
+      } else {
+        $data = $this -> database -> query ('
+            SELECT posts.id,
+                posts.date,
+                posts.author,
+                posts.headline,
+                posts.content,
+                posts.topic,
+                posts.last_reply,
+                posts.number_of_replies,
+                posts.number_of_clicks
+            FROM posts
+            LEFT JOIN replies
+            ON posts.id = replies.post_ref
+            WHERE (posts.headline
+            LIKE "%'.$find.'%"
+            OR posts.content
+            LIKE "%'.$find.'%"
+            OR replies.content
+            LIKE "%'.$find.'%")
+            AND topic = "'.$topic.'"
             ORDER BY '.$this -> scoring_algorithm.' DESC
             LIMIT '. $this -> posts_on_frontpage.';');
       }
