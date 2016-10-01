@@ -66,6 +66,14 @@ button {
   background: #FF4242 !important;
 }
 
+#find {
+  text-align: right;
+}
+
+#find input {
+  text-align: left;
+}
+
 #imprint_link {
   font-size: 0.6rem;
   color: #666666;

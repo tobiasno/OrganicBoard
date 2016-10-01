@@ -27,6 +27,7 @@
     private $path = '';
     private $single_path = 'single.php?id=';
     private $topic_path = '?topic=';
+    private $find_path = '?find=';
     // Messages
     private $submit_error = "Fehler: Eintrag konnte nicht abgeschickt werden.";
     // Behavioral algorithms
@@ -287,6 +288,10 @@
       }
       $output .= '
               </ul>
+              <form id="find" action="/" method="get" accept-charset="UTF-8">
+                <input type="text" maxlength="64" id="find" name="find" placeholder="Suchbegriff">
+                <button type="submit">Suchen</button>
+              </form>
             </div>
           </div>';
       return $output;
