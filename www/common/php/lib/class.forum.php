@@ -7,11 +7,13 @@
   require_once ("common/php/path.php");
   require_once (PATH_PHP . "class.mysql_database.php");
   require_once (PATH_PHP . "class.clock.php");
+  require_once (PATH_PHP . "class.html_worker.php");
 
   class Forum {
     // Objects
     private $database;
     private $clock;
+    private $html_worker;
     // Internally used variable
     private $time_since_last_visit;
     // Configuration of frontpage appearience
@@ -50,6 +52,7 @@
     public function __construct () {
       $this -> database = new Database ();
       $this -> clock = new Clock ();
+      $this -> html_worker = new HTML_Worker ();
     }
 
     // Taking requests
@@ -183,7 +186,7 @@
                 ($this -> time_since_last_visit < $this -> clock -> getDifference ($post_data["date"], $this -> clock -> getTimestamp ()) ? '' : '<span class="new">[Neu]</span> ')
                 .$post_data["headline"].'</a>
               </div>
-              <div class="board_content">'.$this -> enhanceContent ($post_data["content"]).'</div>
+              <div class="board_content">'.$this -> html_worker -> enhanceContent ($post_data["content"]).'</div>
               <div class="board_author">von <strong>'.$post_data["author"].'</strong></div>
               <div class="board_date">um <a href="'.$this -> single_path . $post_data["id"] .'">'.$post_data["date"].'</a></div>
               <div class="board_topic"><a href="'.$this -> topic_path . $post_data["topic"].'">'.$post_data["topic"].'</a></div>
@@ -233,7 +236,7 @@
     private function composeBoardReply ($reply_data) {
       $output = '
           <div class="board_reply" id="'.$reply_data["id"].'">
-            <div class="board_reply_content">'.$this -> enhanceContent ($reply_data["content"]).'</div>
+            <div class="board_reply_content">'.$this -> html_worker -> enhanceContent ($reply_data["content"]).'</div>
             <div class="board_reply_author">'.
             ($this -> time_since_last_visit < $this -> clock -> getDifference ($reply_data["date"], $this -> clock -> getTimestamp ()) ? '' : '<span class="new">[Neu]</span> ')
             .'von <strong>'.$reply_data["author"].'</strong></div>
@@ -315,7 +318,7 @@
           <div id="single_post">
             <div id="single_post_area">
               <div class="single_headline"><a href="'.$this -> single_path . $data[0]["id"] .'">'.$data[0]["headline"].'</a></div>
-              <div class="single_content">'.$this -> enhanceContent ($data[0]["content"]).'</div>
+              <div class="single_content">'.$this -> html_worker -> enhanceContent ($data[0]["content"]).'</div>
               <div class="single_author">von <strong>'.$data[0]["author"].'</strong></div>
               <div class="single_date">um <a href="'.$this -> single_path . $data[0]["id"] .'">'.$data[0]["date"].'</a></div>
               <div class="single_topic"><a href="./'.$this -> topic_path . $data[0]["topic"].'">'.$data[0]["topic"].'</a></div>
@@ -364,7 +367,7 @@
     private function composeSingleReply ($reply_data) {
       $output = '
           <div class="single_reply" id="'.$reply_data["id"].'">
-            <div class="single_reply_content">'.$this -> enhanceContent ($reply_data["content"]).'</div>
+            <div class="single_reply_content">'.$this -> html_worker -> enhanceContent ($reply_data["content"]).'</div>
             <div class="single_reply_author">von <strong>'.$reply_data["author"].'</strong></div>
             <div class="single_reply_date">um <a href="'.$this -> single_path . $reply_data["post_ref"].'#'.$reply_data["id"].'">'.$reply_data["date"].'</a></div>
           </div>';
@@ -388,48 +391,6 @@
       return $output;
     }
 
-    // Additions for displaying content
-
-    /**
-     * Automatically makes links clickable, new lines visible etc.
-     *
-     * @param string $text
-     * @return string
-     */
-    private function enhanceContent($text){
-          $text = preg_replace('!(((f|ht)tp(s)?://)[-a-zA-Zа-яА-Я()0-9@:%_+.~#?&;//=]+)!i', '<a href="$1" target="_blank">$1</a>', $text);
-          $text = preg_replace('#&lt;(/?(?:i|b|u|ul|li|ol|del))&gt;#', '<\1>', $text);
-          $text = $this -> closeTags ($text);
-          $text = nl2br ($text);
-          return $text;
-    }
-
-    /**
-     * Closes HTML tags at the end of the content that were left open
-     *
-     * @param string $html
-     * @return string
-     */
-    private function closeTags ($html) {
-      preg_match_all ('#<([a-z]+)(?: .*)?(?<![/|/ ])>#iU', $html, $result);
-      $opened_tags = $result[1];
-      preg_match_all ('#</([a-z]+)>#iU', $html, $result);
-      $closed_tags = $result[1];
-      $len_opened = count($opened_tags);
-      if (count ($closed_tags) == $len_opened) {
-        return $html;
-      }
-      $opened_tags = array_reverse ($opened_tags);
-      for ($i = 0; $i < $len_opened; $i++) {
-        if (!in_array ($opened_tags[$i], $closed_tags)){
-          $html .= '</'.$opened_tags[$i].'>';
-        } else {
-          unset ($closed_tags[array_search ($opened_tags[$i], $closed_tags)]);
-        }
-      }
-      return $html;
-    }
-    
     // Writing to the database
 
     /**
