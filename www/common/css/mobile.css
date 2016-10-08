@@ -86,6 +86,10 @@ button {
   right: 0.1rem;
 }
 
+#find input {
+  border: 2px solid #1693A5;
+}
+
 /* Board */
 
 #help_link {
