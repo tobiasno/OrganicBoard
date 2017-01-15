@@ -61,6 +61,10 @@ input, textarea, button {
   background: #F0F2EB;
 }
 
+.captcha_field {
+  max-height: 1.4rem;
+}
+
 button {
   color: #FFFFFF !important;
   background: #FF4242 !important;
