@@ -27,6 +27,8 @@ Thema::
   Name des Themas unter dem der Beitrag abgelegt wird. Themen dienen dazu Beiträge zu finden und nur eine Auswahl anzuzeigen. Ein Thema zu wählen ist empfohlen. Ein Beitrag kann nur unter einem Thema abgelegt werden und es ist sinnvoll kurze, aussagekräftige Themen zu wählen und auf Groß- und Kleinschreibung zu achten. Wird bereits nach einem Thema gefiltert, wird selbiges automatisch ins Formular eingetragen.
 Text::
   Inhalt des Beitrags. Darf nicht leer sein. Zeilenumbrüche werden normal erkannt und es können bestimmte HTML-Tags zur Textformatierung genutzt werden. Außerdem werden URLs automatisch zu Links.
+Captcha::
+  Eine Frage, die man beantworten muss, damit der Beitrag tatsächlich gerspeichert wird, um Spambots von Menschen zu unterscheiden.
 
 TIP: Themen verhalten sich ähnlich wie Subforen in anderen Boards, nur dass sie hier von den Nutzern bestimmt werden. Beiträge lassen sich gut in bereits verwendete Themen einordnen. Mit einem Bookmark im Browser kann man ein Thema abonnieren, wie ein Subforum.
 
