@@ -73,8 +73,9 @@ input, textarea, button {
   background: #FFFFFF;
 }
 
-.captcha_field {
+.check_field {
   max-height: 3rem;
+  display: none;
 }
 
 button {

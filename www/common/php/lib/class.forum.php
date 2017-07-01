@@ -31,9 +31,8 @@
     private $topic_path = '?topic=';
     // Messages
     private $submit_error = "Fehler: Eintrag konnte nicht abgeschickt werden.";
-    // Captcha
-    private $captcha_question ="Was ist zwei plus zwei?";
-    private $captcha_answer = "4";
+    // Check: Tripwire for bots. Use any hard to guess string.
+    private $check = "eT37GalP08Hnf4Nxnfwoig564Zhdsmrotujf";
     // Behavioral algorithms
     private $scoring_algorithm = '
         100.00000000 * (
@@ -263,7 +262,7 @@
               <input type="text" maxlength="64" id="headline" name="headline" placeholder="Überschrift"><br>
               <input type="text" maxlength="20" id="topic" name="topic" placeholder="Thema (optional)" value="'.$topic.'"><br>
               <textarea type="text" id="content" name="content" placeholder="Text"></textarea><br>
-              <textarea class="captcha_field" type="text" id="captcha" name="captcha" placeholder="'.$this -> captcha_question.'"></textarea><br>
+              <input class="check_field" type="text" id="check" name="check" value="'.$this -> check.'">
               <button type="submit">Los!</button><a href="./doc/userguide.html" target="_blank" id="help_link">Hilfe</a>
             </form>
           </div>';
@@ -390,7 +389,7 @@
           <form action="'.$this -> single_path . $id.'#answer_form" method="post" accept-charset="UTF-8">
             <input type="text" maxlength="16" id="name" name="name" placeholder="Name (optional)"><br>
             <textarea type="text" id="content" name="content" placeholder="Text"></textarea><br>
-            <textarea class="captcha_field" type="text" id="captcha" name="captcha" placeholder="'.$this -> captcha_question.'"></textarea><br>
+            <input class="check_field" type="text" id="check" name="check" value="'.$this -> check.'">
             <button type="submit">Los!</button>
           </form>';
       return $output;
@@ -405,7 +404,7 @@
      * @return boolean
      */
     private function writePost ($post) {
-      if (empty ($post) || $post["headline"] === '' || $post["content"] === '' || $post["captcha"] != $this -> captcha_answer) {
+      if (empty ($post) || $post["headline"] === '' || $post["content"] === '' || $post["check"] != $this -> check) {
         return false;
       } else {
         $post = $this -> cleanInput ($post);
@@ -446,7 +445,7 @@
      * @return boolean
      */
     private function writeReply ($id, $post) {
-      if (empty ($post) || $post["content"] === '' || $id === 0 || $post["captcha"] != $this -> captcha_answer) { // No replying to ID 0 to combat spam.
+      if (empty ($post) || $post["content"] === '' || $id === 0 || $post["check"] != $this -> check) { // No replying to ID 0 to combat spam.
         return false;
       } else {
         $post = $this -> cleanInput ($post);
