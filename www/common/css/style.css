@@ -235,6 +235,7 @@ font-size: 2rem;
 }
 
 .single_headline, .single_headline a {
+  text-align: left;
   font-size: 150%;
   color: #FF4242;
   margin: 0 0 2rem 0;
