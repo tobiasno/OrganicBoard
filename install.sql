@@ -1,4 +1,5 @@
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -15,14 +16,14 @@ CREATE TABLE IF NOT EXISTS `cron_dates` (
   `last_purge` datetime NOT NULL,
   `last_topic_index` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `cron_dates`
 --
 
 INSERT INTO `cron_dates` (`id`, `last_purge`, `last_topic_index`) VALUES
-(1, '2015-07-30 10:19:18', '2015-07-30 22:25:07');
+(1, '2017-07-01 11:59:12', '2017-07-01 17:00:00');
 
 -- --------------------------------------------------------
 
@@ -36,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `posts` (
   `author` varchar(32) NOT NULL,
   `headline` varchar(128) NOT NULL,
   `content` text NOT NULL,
-  `topic` varchar(20) NOT NULL,
+  `topic` varchar(32) NOT NULL,
   `last_reply` datetime NOT NULL,
   `number_of_replies` bigint(20) unsigned NOT NULL,
   `number_of_clicks` bigint(20) unsigned NOT NULL,
@@ -59,7 +60,6 @@ CREATE TABLE IF NOT EXISTS `replies` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `unique_reply` (`post_ref`,`author`,`content`(64))
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
 -- --------------------------------------------------------
 
 --
@@ -72,3 +72,7 @@ CREATE TABLE IF NOT EXISTS `topics` (
   `number_of_occurrences` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

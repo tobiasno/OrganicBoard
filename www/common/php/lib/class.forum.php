@@ -258,9 +258,10 @@
           <div id="open_topic_form">
             <div id="open_topic_form_headline">Neuen Beitrag verfassen</div>
             <form action="'.$this -> path.'" method="post" accept-charset="UTF-8">
-              <input type="text" maxlength="16" id="name" name="name" placeholder="Name (optional)"><br>
+              <input type="text" maxlength="32" id="name" name="name" placeholder="Name (optional)"><br>
+              <input class="check_field" type="text" maxlength="2048" id="hcheck" name="hcheck" placeholder="Name (optional)">
               <input type="text" maxlength="64" id="headline" name="headline" placeholder="Überschrift"><br>
-              <input type="text" maxlength="20" id="topic" name="topic" placeholder="Thema (optional)" value="'.$topic.'"><br>
+              <input type="text" maxlength="32" id="topic" name="topic" placeholder="Thema (optional)" value="'.$topic.'"><br>
               <textarea type="text" id="content" name="content" placeholder="Text"></textarea><br>
               <input class="check_field" type="text" id="check" name="check" value="'.$this -> check.'">
               <button type="submit">Los!</button><a href="./doc/userguide.html" target="_blank" id="help_link">Hilfe</a>
@@ -387,7 +388,8 @@
       $output = '
           <div id="answer_form_headline">Antworten</div>
           <form action="'.$this -> single_path . $id.'#answer_form" method="post" accept-charset="UTF-8">
-            <input type="text" maxlength="16" id="name" name="name" placeholder="Name (optional)"><br>
+            <input type="text" maxlength="32" id="name" name="name" placeholder="Name (optional)"><br>
+            <input class="check_field" type="text" maxlength="2048" id="hcheck" name="hcheck" placeholder="Name (optional)">
             <textarea type="text" id="content" name="content" placeholder="Text"></textarea><br>
             <input class="check_field" type="text" id="check" name="check" value="'.$this -> check.'">
             <button type="submit">Los!</button>
@@ -404,7 +406,7 @@
      * @return boolean
      */
     private function writePost ($post) {
-      if (empty ($post) || $post["headline"] === '' || $post["content"] === '' || $post["check"] != $this -> check) {
+      if (empty ($post) || $post["headline"] === '' || $post["content"] === '' || $post["check"] != $this -> check || $post["hcheck"] != "") {
         return false;
       } else {
         $post = $this -> cleanInput ($post);
@@ -445,7 +447,7 @@
      * @return boolean
      */
     private function writeReply ($id, $post) {
-      if (empty ($post) || $post["content"] === '' || $id === 0 || $post["check"] != $this -> check) { // No replying to ID 0 to combat spam.
+      if (empty ($post) || $post["content"] === '' || $id === 0 || $post["check"] != $this -> check || $post["hcheck"] != "") { // No replying to ID 0 to combat spam.
         return false;
       } else {
         $post = $this -> cleanInput ($post);
