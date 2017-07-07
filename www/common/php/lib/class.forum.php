@@ -109,7 +109,7 @@
       }
       else if ((string)$topic === '' && (string)$find != '') {
         $data = $this -> database -> query ('
-            SELECT posts.id,
+            SELECT DISTINCT posts.id,
                 posts.date,
                 posts.author,
                 posts.headline,
