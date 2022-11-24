@@ -66,4 +66,4 @@ Manche Aufgaben werden vom Forum nur in gewissen Abständen ausgeführt. Es ist 
 
 == Bugs
 
-Falls jemand einen Fehler in der Software findet oder sonst etwas nicht so funktioniert wie es sollte, bitte eine E-Mail mit möglichst genauer Beschreibung der Sache an _mail (at) grainofsalt.de_.
+Falls jemand einen Fehler in der Software findet oder sonst etwas nicht so funktioniert wie es sollte, bitte eine E-Mail mit möglichst genauer Beschreibung der Sache an _mail (at) tobiasnolte.de_.
