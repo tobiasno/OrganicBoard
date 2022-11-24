@@ -11,7 +11,7 @@
     private $clock;
     private $cookie_name = "OrganicBoard";
     private $cookie_life = "30"; // in days
-    private $domain = "board.tobiasnolte.com";
+    private $domain = "tobiasnolte.com";
 
     /**
      * Constructor
